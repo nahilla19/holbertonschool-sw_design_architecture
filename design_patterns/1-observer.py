@@ -11,7 +11,10 @@ class NewsSubject:
     def __init__(self) -> None:
         self._subs: dict[Observer, set[str] | None] = {}
 
-    def subscribe(self, observer: Observer, topics: set[str] | None = None) -> None:
+    def subscribe(
+        self, observer: Observer,
+        topics: set[str] | None = None
+    ) -> None:
         if observer in self._subs:
             return  # ignore duplicate subscribe for same instance
         self._subs[observer] = topics
@@ -39,7 +42,6 @@ class EmailObserver:
 class SmsObserver:
     def update(self, topic: str, data: str) -> None:
         print(f"sms:{topic}={data}")
-
 
 
 def main() -> None:
